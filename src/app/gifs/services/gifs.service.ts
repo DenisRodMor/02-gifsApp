@@ -7,6 +7,7 @@ export class GifsService {
 
   constructor() { }
 
+  private apikey: string = 'L0skS4P4ZsfqLII7u9wtgLe6FBQqbzir';
   private _historial: string[]=[];
 
   get historial(){
