@@ -23,6 +23,7 @@ export class GifsService {
 
     this._historial = JSON.parse(localStorage.getItem('historial')!) || []
 
+    this.resultados = JSON.parse(localStorage.getItem('resultados')!) || []
 
     // Esta manera y la de arriba, ambas sirven para que muestre el historial de busqueda que esta en el localstorage
     // if( localStorage.getItem('historial')){
@@ -40,12 +41,15 @@ export class GifsService {
 
       localStorage.setItem('historial', JSON.stringify(this._historial));
 
+
+
     }
 
     this.http.get<SearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=L0skS4P4ZsfqLII7u9wtgLe6FBQqbzir&q=${ query }&limit =10`)
       .subscribe((resp ) => {
         console.log(resp.data);
         this.resultados = resp.data;
+        localStorage.setItem('resultados', JSON.stringify(this.resultados));
       });
 
 
